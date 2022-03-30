@@ -1,19 +1,6 @@
 import { useState, useEffect } from "react"
 
-export const SearchPanel = () => {
-    const [param, setParam] = useState({
-        name: '',
-        personId: ''
-    })
-    const [users,setUsers] = useState([{name:'1',personId:123},{name:'2',personId:123}])
-    const [list,setList] = useState([])
-    useEffect(() =>{
-        fetch('').then(async res=>{
-           if(res.ok){
-            // setList(res.json)
-           } 
-        })
-    },[param])
+export const SearchPanel = ({param,setParam}) => {    
 
     return <form>
         <div>
