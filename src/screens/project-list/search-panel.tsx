@@ -1,6 +1,21 @@
 import { useState, useEffect } from "react"
 
-export const SearchPanel = ({param,setParam}) => {    
+export interface User{
+    id:string;
+    name:string;
+    email:string;
+    title:string;
+    organization:string
+}
+interface SearchPanelProps{
+    users: User[],
+    param: {
+        name: string;
+        personId: string;
+    },
+    setParam:(param:SearchPanelProps['param'])=>void;
+}
+export const SearchPanel = ({param, setParam, users}:SearchPanelProps) => {    
 
     return <form>
         <div>
@@ -10,13 +25,14 @@ export const SearchPanel = ({param,setParam}) => {
             })}/>
             <select value = {param.personId} onChange={evt=> setParam({
                 ...param,
-                personId: evt.personId
+                personId: evt.target.value
             })}>
                 <option value={''}>
                     person in charge
                 </option>
                 {users.map(item => {
-                    return <option value={item.personId}>{item.name}</option>
+                    console.log(111,item,item.id)
+                    return <option key={item.id} value={item.id}>{item.name}</option>
                 })}
             </select>
         </div>
